@@ -1,0 +1,46 @@
+2022/02/20
+Uncaught SyntaxError: The requested module '../index.js' does not provide an export named 'default'
+訳：要求されたモジュール '../index.js'は 'default'という名前のエクスポートを提供しません
+
+pythonのSimpleHTTPServerではJavaScriptが実行できない。
+Node.jsでExpressを利用したHTTPサーバーを構築して、その中にGiikerのモジュールを適用してみた。
+が、上記のエラーが表示された。
+
+ESモジュールとNodejsへの理解が乏しいため難しそうだ。コードの中身を読んだ方が早いかもしれない？
+
+2022/02/21
+ES ModulesとCommon JSについて
+現環境のNode.jsのモジュールシステムがどちらなのかを確認する。
+console.log(typeof module);
+undefinedならES Modules
+objectならCJS
+各jsファイルごとに確認する必要がある
+app.js(CJS)
+../index.mjs(ESM)
+index.js(ESM)
+index.html(ESM)
+
+Node.jsはCJSが採用されている。
+(require,exports,module.exportsなどはCJSの記述）
+htmlでの<script type="module">はESM記述
+import ~は新しい記述のためNodeJsでは使えないらしい。
+→Importとmodule.exportの記述を削除してファイルを一つにまとめました。
+GiiKERの記述も削除して無理やり動かしている。
+
+実行コマンド
+node app.js
+今後の予定
+・HTMLをもう少し整える。
+・Glithを使って外部公開する。
+・iOSで表示させる。
+
+
+2022/2/28
+回しやすさなどを考慮して再設計
+
+    faces[4] = 'U';ミファ：白
+    faces[13] = 'R';ドレ：赤
+    faces[22] = 'F';ソ／ラ：緑
+    faces[31] = 'D';シド：黄
+    faces[40] = 'L';ーー：橙
+    faces[49] = 'B'ーー：青
